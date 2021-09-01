@@ -5,6 +5,7 @@ def interface():
         print("Make a choice")
         print("1 - HDL Analysis")
         print("2 - LDL Analysis")
+        print("3 - TC Analysis")
         print("9 - Quit")
         choice = int(input("Make a choice: "))
         print(type(choice))
@@ -14,6 +15,8 @@ def interface():
             HDL_Driver()
         elif choice == 2:
             LDL_Driver()
+        elif choice == 3:
+            TC_Driver()
             
     print(choice)
     return choice
@@ -62,7 +65,27 @@ def ldl_analysis(LDL_value):
 def ldl_output(LDL_value, LDL_answer):
     print("The LDL value of {} is considered {}".format(LDL_value, LDL_answer))
     return
+
+def TC_Driver():
+    TC_value = tc_input()
+    TC_character = tc_analysis(TC_value)
+    tc_output(TC_value, TC_character)
     
+def tc_input():
+    tc_value = int(input("Enter TC Value: "))
+    return tc_value
+    
+def tc_analysis(TC_value):
+    if TC_value < 200:
+        return "Normal"
+    elif 200 <= TC_value <= 239:
+        return "Borderline High"
+    else:
+        return "High"
+
+def tc_output(TC_value, TC_answer):
+    print("The TC value of {} is considered {}".format(TC_value, TC_answer))
+    return    
     
 interface()
    
